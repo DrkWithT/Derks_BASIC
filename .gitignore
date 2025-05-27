@@ -1,0 +1,8 @@
+.DS_Store
+.cache
+.git
+.vscode
+build/
+logs/
+
+compile_commands.json

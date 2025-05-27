@@ -1,0 +1,9 @@
+If:
+    PathMatch: [\./includes/.*/\.h, \./src/.*\.c]
+
+CompileFlags:
+    Add: [-xc, -std=c23, -Wall, -Wextra, -Wpedantic, -Werror]
+    Compiler: clang
+
+Completion:
+    AllScopes: Yes
