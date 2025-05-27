@@ -1,0 +1,5 @@
+# hello world #
+
+DEFUN main WITH args DO
+    PRINT "Hello World!"
+END
