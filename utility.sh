@@ -1,15 +1,15 @@
 exit_with_usage() {
-    echo "./utility.sh [help | build | run] <args...>\n\tbuild: mode=[dbg|rel]\n" && exit $1
+    echo "./utility.sh [help | build | run] <args...>\n\tbuild: mode=[debug|release]\n" && exit $1
 }
 
 build() {
-    if [[ $1 = "dbg" ]]; then
-        make clean && make all EXTRA_FLAGS="-g -Og"
-    elif [[ $1 = "rel" ]]; then
-        make clean && make all EXTRA_FLAGS="-O2"
-    else
-        echo "Invalid option for configure_build!" && exit 1
+    if [[ $1 != "debug" && $1 != "release" ]]; then
+        echo "Invalid option for configure_build!" && exit 1;
     fi
+
+    [ $1 = "debug" ] && cmake --fresh -S . -B build -DDO_DEBUG_MODE:BOOL=1 && cmake --build build || cmake --fresh -S . -B build -DDO_DEBUG_MODE:BOOL=0 && cmake --build build
+
+    [ $? -eq 0 ] && mv ./build/compile_commands.json .
 }
 
 action="$1"
@@ -19,7 +19,7 @@ if [[ $action = "help" ]]; then
 elif [[ $action = "build" ]]; then
     build "$2"
 elif [[ $action = "run" ]]; then
-    make run
+    ./build/src/derkbasic $2
 else
     exit_with_usage 1
 fi

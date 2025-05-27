@@ -1,8 +1,8 @@
 If:
-    PathMatch: [\./includes/.*/\.h, \./src/.*\.c]
+    PathMatch: [./includes/.*\.h, ./src/.*\.c]
 
 CompileFlags:
-    Add: [-xc, -std=c23, -Wall, -Wextra, -Wpedantic, -Werror]
+    Add: [-xc, -Wall, -Werror, -Wpedantic, -std=c23]
     Compiler: clang
 
 Completion:
