@@ -9,8 +9,12 @@ typedef struct cstr_view_t {
 
 [[nodiscard]] CStrView cstr_view_create(const char* src, ptrdiff_t begin, ptrdiff_t length);
 
+[[nodiscard]] bool cstr_view_valid(const CStrView* self);
+
 [[nodiscard]] char cstr_view_at(const CStrView* self, ptrdiff_t pos);
 
 [[nodiscard]] bool cstr_view_cmp_other(const CStrView* self, const CStrView* other);
 
 [[nodiscard]] bool cstr_view_cmp_cstr(const CStrView* self, const char* cstr);
+
+[[nodiscard]] size_t cstr_view_hash(const CStrView* self);
