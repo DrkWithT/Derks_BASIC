@@ -1,7 +1,7 @@
 # average of two numbers #
 
 DEFUN average WITH a, b DO
-    RET (a + b) / 2
+    RETURN (a + b) / 2
 END
 
 DEFUN main WITH args DO

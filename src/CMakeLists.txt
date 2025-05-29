@@ -1,5 +1,9 @@
 set(PROJ_SOURCES
     ${PROJ_SOURCE_DIR}/cstrview.c
+    ${PROJ_SOURCE_DIR}/safestr.c
+    ${PROJ_SOURCE_DIR}/dict.c
+    ${PROJ_SOURCE_DIR}/token.c
+    ${PROJ_SOURCE_DIR}/lexer.c
 )
 
 add_library(dbasic "")
