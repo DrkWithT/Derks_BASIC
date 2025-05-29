@@ -91,23 +91,22 @@ void dict_##item_t##_destroy(Dict_##item_t* self) {\
 }\
 \
 [[nodiscard]] item_t dict_##item_t##_get(const Dict_##item_t* self, const CStrView* key, item_t dud) {\
-    DictNode_##item_t* temp = self->root;\
+    DictNode_##item_t* cursor = self->root;\
     const size_t key_hash = cstr_view_hash(key);\
-    if (!temp) {\
+    if (!cursor) {\
         return dud;\
     }\
-    if (temp->hash == key_hash) {\
-        return temp->data;\
+    if (cursor->hash == key_hash) {\
+        return cursor->data;\
     }\
     DictNode_##item_t* prev = nullptr;\
-    DictNode_##item_t* cursor = self->root;\
     while (cursor) {\
         if (cursor->hash == key_hash) {\
             prev = cursor;\
             break;\
         }\
         prev = cursor;\
-        cursor = (key_hash < temp->hash) ? temp->left : temp->right ;\
+        cursor = (key_hash < cursor->hash) ? cursor->left : cursor->right ;\
     }\
     return prev->data;\
 }\

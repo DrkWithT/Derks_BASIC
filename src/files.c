@@ -14,7 +14,13 @@ SafeStr read_file_sync(const char* file_path, BlobMode mode) {
     }
 
     while (!feof(fs)) {
-        const auto append_ok = safe_str_append_char(&temp, (char)fgetc(fs));
+        const auto ch = fgetc(fs);
+
+        if (ch == EOF) {
+            break;
+        }
+
+        const auto append_ok = safe_str_append_char(&temp, (char)ch);
 
         if (!append_ok) {
             safe_str_destroy(&temp);

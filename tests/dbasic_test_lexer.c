@@ -11,14 +11,14 @@
         return false;
     }
 
-    Lexer lexer = lexer_create(&src_str);
+    LexerState lexer = lexer_create(&src_str);
     Token temp;
 
     do {
         temp = lexer_next(&lexer);
 
         if (temp.tag == unknown) {
-            fprintf("Lexical Error at [%d:%d], unknown token.\n", temp.line, temp.col);
+            fprintf(stderr, "Lexical Error at [%d:%d], unknown token.\n", temp.line, temp.col);
             lexer_destroy(&lexer);
             safe_str_destroy(&src_str);
             return false;

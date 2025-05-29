@@ -56,6 +56,11 @@ static constexpr DictTriple_TokenTag lang_words[] = {
         .value = op_call
     },
     (DictTriple_TokenTag) {
+        .key = "PRINT",
+        .key_length = 5,
+        .value = keyword
+    },
+    (DictTriple_TokenTag) {
         .key = "+",
         .key_length = 1,
         .value = op_plus
@@ -98,7 +103,7 @@ static constexpr DictTriple_TokenTag lang_words[] = {
     (DictTriple_TokenTag) {
         .key = "=",
         .key_length = 1,
-        .value = op_slash
+        .value = op_assign
     }
 };
 
@@ -190,6 +195,7 @@ Token lexer_lex_comment(LexerState* self) {
 
         if (symbol == '#') {
             // skip closing '#' of comment to prevent infinite lexing loop
+            lexer_update_file_pos(self, symbol);
             ++self->pos;
             break;
         }
@@ -357,6 +363,8 @@ Token lexer_next(LexerState* self) {
     switch (peeked) {
     case '#':
         return lexer_lex_comment(self);
+    case '\"':
+        return lexer_lex_string(self);
     case '\n':
         return lexer_lex_single(self, lf);
     case ',':
