@@ -127,6 +127,7 @@ bool lexer_at_end(const LexerState* self) {
 
 Token lexer_lex_single(LexerState* self, TokenTag tag) {
     const auto start = self->pos;
+    lexer_update_file_pos(self, cstr_view_at(&self->view, start));
 
     ++self->pos;
 
