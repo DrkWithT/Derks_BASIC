@@ -1,5 +1,5 @@
 exit_with_usage() {
-    echo "./utility.sh [help | build | run] <args...>\n\tbuild: mode=[debug|release]\n" && exit $1
+    echo "./utility.sh [help | build | test | run] <args...>\n\tbuild: mode=[debug|release]\n" && exit $1
 }
 
 build() {
@@ -18,6 +18,8 @@ if [[ $action = "help" ]]; then
     exit_with_usage 0
 elif [[ $action = "build" ]]; then
     build "$2"
+elif [[ $action = "test" ]]; then
+    ctest --test-dir build --timeout 2 -V 1> ./logs/testing.txt
 elif [[ $action = "run" ]]; then
     ./build/src/derkbasic $2
 else

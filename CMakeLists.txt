@@ -21,6 +21,7 @@ endif ()
 set(PROJ_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/includes")
 set(PROJ_SOURCE_DIR "${CMAKE_SOURCE_DIR}/src")
 set(PROJ_LIBS_DIR "${CMAKE_SOURCE_DIR}/build")
+set(PROJ_TEST_CODE_DIR "${CMAKE_SOURCE_DIR}/test_code")
 
 add_subdirectory(src)
 enable_testing()
