@@ -1,5 +1,8 @@
 #pragma once
 
+#include "utils/cstrview.h"
+#include "utils/safestr.h"
+
 typedef enum token_tag_e {
     unknown,
     spaces,
@@ -20,6 +23,7 @@ typedef enum token_tag_e {
     brace_left,
     brace_right,
     op_access,
+    op_call,
     op_plus,
     op_minus,
     op_times,
@@ -41,4 +45,6 @@ typedef struct token_t
     int col;
 } Token;
 
+[[nodiscard]] CStrView peek_lexeme(const SafeStr* source, const Token* token);
 
+[[nodiscard]] SafeStr get_lexeme(const SafeStr* source, const Token* token);
